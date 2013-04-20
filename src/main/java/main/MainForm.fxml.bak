@@ -27,8 +27,12 @@
                 </ToolBar>
                 <TableView layoutY="27.0" prefHeight="710.0" prefWidth="1024.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="Column X" />
-                    <TableColumn prefWidth="75.0" text="Column X" />
+                    <TableColumn prefWidth="75.0" text="編號" />
+                    <TableColumn prefWidth="75.0" text="名稱" />
+                    <TableColumn prefWidth="75.0" text="單價" />
+                    <TableColumn prefWidth="75.0" text="數量" />
+                    <TableColumn prefWidth="75.0" text="總金額" />
+                    <TableColumn prefWidth="75.0" text="顏色/數量" />
                   </columns>
                 </TableView>
               </children>
