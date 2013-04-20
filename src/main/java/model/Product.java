@@ -7,7 +7,7 @@ public class Product {
 	private Color color;
 	private String size;
 	
-	/* ³f¸¹ */
+	/* The product serial number */
 	private String productNumber;
 	
 	public String getId() {

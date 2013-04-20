@@ -3,7 +3,7 @@ package model;
 import java.sql.Timestamp;
 
 /**
- * 進貨的單件商品資訊
+ * The purchase record of Yahoo! sale plateform
  * @author guyuan
  */
 public class Purchase {
