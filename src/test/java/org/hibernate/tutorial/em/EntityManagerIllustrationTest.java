@@ -56,13 +56,15 @@ public class EntityManagerIllustrationTest {
 
 	@Test
 	public void testBasicUsage() {
+		EntityManager entityManager = null;
+		
 		// create a couple of events...
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
-		entityManager.persist( new Event( "Our very first event!", new Date() ) );
-		entityManager.persist( new Event( "A follow up event", new Date() ) );
-		entityManager.getTransaction().commit();
-		entityManager.close();
+//		entityManager = entityManagerFactory.createEntityManager();
+//		entityManager.getTransaction().begin();
+//		entityManager.persist( new Event( "Our very first event!", new Date() ) );
+//		entityManager.persist( new Event( "A follow up event", new Date() ) );
+//		entityManager.getTransaction().commit();
+//		entityManager.close();
 
 		// now lets pull events from the database and list them
 		entityManager = entityManagerFactory.createEntityManager();
