@@ -1,7 +1,17 @@
-package model;
+package safa.model;
 
-public class Store {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Buyer {
+	
+	@Id
+	/** Yahoo ID */
 	private String id;
+	
 	private String name;
 	
 	public String getId() {

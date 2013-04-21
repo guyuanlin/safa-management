@@ -1,4 +1,4 @@
-package model;
+package safa.model;
 
 import java.sql.Timestamp;
 
@@ -7,6 +7,7 @@ import java.sql.Timestamp;
  * @author guyuan
  */
 public class Purchase {
+	
 	private Product product;
 	private int cost;
 	private double discount = 1;
