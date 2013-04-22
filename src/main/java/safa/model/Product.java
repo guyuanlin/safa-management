@@ -14,13 +14,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table
+@Table(name="products")
 public class Product {
 
 	@Id
 	private String id;
 	
 	private String name;
+	
+	@OneToOne
+	private Store store;
 	
 	@OneToOne
 	private Color color;
@@ -48,30 +51,44 @@ public class Product {
 	}
 	public void setId(String id) {
 		this.id = id;
+		onUpdate();
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+		onUpdate();
 	}
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+		onUpdate();
+	}
+
 	public Color getColor() {
 		return color;
 	}
 	public void setColor(Color color) {
 		this.color = color;
+		onUpdate();
 	}
 	public String getSize() {
 		return size;
 	}
 	public void setSize(String size) {
 		this.size = size;
+		onUpdate();
 	}
 	public String getProductNumber() {
 		return productNumber;
 	}
 	public void setProductNumber(String productNumber) {
 		this.productNumber = productNumber;
+		onUpdate();
 	}
 	public Date getCreateTime() {
 		return createTime;
@@ -83,9 +100,13 @@ public class Product {
 	@PrePersist
 	protected void onCreate() {
 		createTime = new Timestamp(System.currentTimeMillis());
+		onUpdate();
 	}
 
 	@PreUpdate
+	/**
+	 * FIXME PreUpdate Does not work for Hibernate
+	 */
 	protected void onUpdate() {
 		updateTime = new Timestamp(System.currentTimeMillis());
 	}

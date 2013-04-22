@@ -23,8 +23,6 @@
  */
 package safa.persistence;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,6 +31,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import safa.model.Color;
 import safa.model.Product;
 
 /**
@@ -60,11 +59,11 @@ public class EntityManagerTest {
 		EntityManager entityManager = null;
 		
 		// create a couple of events...
-		entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
-		entityManager.persist(new Product("2"));
-		entityManager.getTransaction().commit();
-		entityManager.close();
+//		entityManager = entityManagerFactory.createEntityManager();
+//		entityManager.getTransaction().begin();
+//		entityManager.persist(new Product("3"));
+//		entityManager.getTransaction().commit();
+//		entityManager.close();
 
 		// now lets pull events from the database and list them
 //		entityManager = entityManagerFactory.createEntityManager();
@@ -76,12 +75,13 @@ public class EntityManagerTest {
 //        entityManager.getTransaction().commit();
 //        entityManager.close();
 		
-		System.out.println(200);
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		Product product = entityManager.find(Product.class, "1");
+		Product product = entityManager.find(Product.class, "3");
+//		Color color = entityManager.find(Color.class, "紅色");
 		System.out.println(product);
 		product.setName("短靴");
+//		product.setColor(color);
 		System.out.println(product);
         entityManager.getTransaction().commit();
         entityManager.close();
