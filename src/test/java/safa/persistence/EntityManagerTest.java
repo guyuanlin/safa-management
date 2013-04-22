@@ -62,7 +62,7 @@ public class EntityManagerTest {
 		// create a couple of events...
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(new Product("1"));
+		entityManager.persist(new Product("2"));
 		entityManager.getTransaction().commit();
 		entityManager.close();
 
@@ -76,6 +76,7 @@ public class EntityManagerTest {
 //        entityManager.getTransaction().commit();
 //        entityManager.close();
 		
+		System.out.println(200);
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		Product product = entityManager.find(Product.class, "1");
