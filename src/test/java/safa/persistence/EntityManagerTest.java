@@ -55,7 +55,7 @@ public class EntityManagerTest {
 	}
 
 	@Test
-	public void testBasicUsage() {
+	public void testBasicUsage() throws InterruptedException {
 		EntityManager entityManager = null;
 		
 		// create a couple of events...
@@ -80,10 +80,17 @@ public class EntityManagerTest {
 		Product product = entityManager.find(Product.class, "3");
 //		Color color = entityManager.find(Color.class, "紅色");
 		System.out.println(product);
-		product.setName("短靴");
+		product.setName("123456");
+		entityManager.merge(product);
 //		product.setColor(color);
-		System.out.println(product);
         entityManager.getTransaction().commit();
         entityManager.close();
+        
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+		product = entityManager.find(Product.class, "3");
+		System.out.println(product);
+		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 }
