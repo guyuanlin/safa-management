@@ -27,6 +27,7 @@ public class Product {
 	
 	@OneToOne
 	private Color color;
+	
 	private String size;
 	
 	/* The product serial number */
@@ -40,7 +41,7 @@ public class Product {
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date updateTime;
 	
-	private Product(){}
+	public Product(){}
 	
 	public Product(String id) {
 		this.id = id;
@@ -65,7 +66,7 @@ public class Product {
 	public void setStore(Store store) {
 		this.store = store;
 	}
-
+	
 	public Color getColor() {
 		return color;
 	}

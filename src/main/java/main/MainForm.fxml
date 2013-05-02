@@ -20,15 +20,15 @@
                     <Button mnemonicParsing="false" text="刪除" />
                   </items>
                 </ToolBar>
-                <TableView prefHeight="710.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+                <TableView fx:id="productsTableView" prefHeight="710.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="編號" />
-                    <TableColumn prefWidth="75.0" text="名稱" />
-                    <TableColumn prefWidth="75.0" text="店家" />
-                    <TableColumn prefWidth="75.0" text="單價" />
-                    <TableColumn prefWidth="75.0" text="數量" />
-                    <TableColumn prefWidth="75.0" text="總金額" />
-                    <TableColumn prefWidth="75.0" text="顏色/數量" />
+                    <TableColumn prefWidth="75.0" text="編號" fx:id="idCol" />
+                    <TableColumn prefWidth="75.0" text="名稱" fx:id="nameColumn" />
+                    <TableColumn prefWidth="75.0" text="貨號" fx:id="productNumberCol" />
+                    <TableColumn prefWidth="75.0" text="店家" fx:id="storeCol" />
+                    <TableColumn prefWidth="75.0" text="數量" fx:id="countCol" />
+                    <TableColumn prefWidth="75.0" text="顏色" fx:id="colorCol" />
+                    <TableColumn prefWidth="75.0" text="尺寸" fx:id="sizeCol" />
                   </columns>
                 </TableView>
               </children>
