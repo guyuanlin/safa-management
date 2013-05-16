@@ -16,10 +16,12 @@ public class H2DBDAO {
 	
 	private EntityManagerFactory entityManagerFactory;
 	private Optional<ArrayList<Product>> defaultProductList;
+	private Optional<ArrayList<Color>> defaultColorList;
 	
 	private H2DBDAO() {
 		entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_FILE);
 		defaultProductList = Optional.of(new ArrayList<Product>());
+		defaultColorList = Optional.of(new ArrayList<Color>());
 	}
 	
 	public static H2DBDAO getInstance() {
@@ -98,6 +100,56 @@ public class H2DBDAO {
 		}
 	}
 	
+	public void addColor(Color color) {
+		EntityManager em = entityManagerFactory.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.persist(color);
+			em.getTransaction().commit();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public boolean containsColor(String colorName) {
+		EntityManager em = entityManagerFactory.createEntityManager();
+		boolean result = false;
+		try {
+			em.getTransaction().begin();
+			result = !(em.find(Color.class, colorName) == null);
+			em.getTransaction().commit();
+			return result;
+		} finally {
+			em.close();
+		}
+	}
+	
+	public Color getColor(String colorName) {
+		EntityManager em = entityManagerFactory.createEntityManager();
+		Color color = null;
+		try {
+			em.getTransaction().begin();
+			color = em.find(Color.class, colorName);
+			em.getTransaction().commit();
+			return color;
+		} finally {
+			em.close();
+		}
+	}
+	
+	public List<Color> getAllColors() {
+		EntityManager em = entityManagerFactory.createEntityManager();
+		List<Color> colors = defaultColorList.get();
+		try {
+			em.getTransaction().begin();
+			colors = em.createQuery("from Color", Color.class).getResultList();
+			em.getTransaction().commit();
+			return colors;
+		} finally {
+			em.close();
+		}
+	}
+	
 	public void close() {
 		entityManagerFactory.close();
 	}
@@ -107,19 +159,47 @@ public class H2DBDAO {
 	 */
 	public static void main(String[] args) {
 		H2DBDAO dao = H2DBDAO.getInstance();
-		List<Product> products = dao.getAllProducts();
-		for(Product product : products) {
-			System.out.println(product);
-		}
-		System.out.println(dao.containsProduct("4"));
-		Product product4 = dao.getProduct("4");
-		product4.setName("2222");
-		product4.setSize("23.5");
-		dao.upateProduct(product4);
 		
-		products = dao.getAllProducts();
-		for(Product product : products) {
-			System.out.println(product);
+		List<Color> colors = dao.getAllColors();
+		System.out.println("Color 列表：");
+		for(Color color : colors) {
+			System.out.println(color);
 		}
+		
+		dao.addColor(new Color("紅色"));
+		if(!dao.containsColor("紅色")) {
+			dao.addColor(new Color("紅色"));
+		}
+		colors = dao.getAllColors();
+		System.out.println("Color 列表：");
+		for(Color color : colors) {
+			System.out.println(color);
+		}
+		
+//		System.out.println(dao.containsProduct("1"));
+//		Product product4 = dao.getProduct("1");
+//		product4.setName("2222");
+//		dao.upateProduct(product4);
+//		
+//		colors = dao.getAllProducts();
+//		for(Product product : colors) {
+//			System.out.println(product);
+//		}
+		
+//		dao.addProduct(new Product(new ProductPK("1", "23.5", new Color("紅色"))));
+//		
+//		List<Product> products = dao.getAllProducts();
+//		for(Product product : products) {
+//			System.out.println(product);
+//		}
+//		System.out.println(dao.containsProduct("1"));
+//		Product product4 = dao.getProduct("1");
+//		product4.setName("2222");
+//		dao.upateProduct(product4);
+//		
+//		products = dao.getAllProducts();
+//		for(Product product : products) {
+//			System.out.println(product);
+//		}
 	}
 }

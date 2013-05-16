@@ -1,4 +1,4 @@
-package safa.model;
+package safa.controller;
 
 import javafx.beans.value.ObservableValue;
 
