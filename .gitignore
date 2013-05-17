@@ -1,3 +1,6 @@
 target/*
 bin/*
-db/*.db*
+db/*
+logs/*
+
+!db/.gitkeep

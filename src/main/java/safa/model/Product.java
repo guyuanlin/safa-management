@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Index;
-
 @Entity
 @Table(name="products")
 /**
@@ -28,8 +26,6 @@ public class Product {
 	@EmbeddedId
 	private ProductPK _key;
 	
-	@Index(name="index")
-	private String index;
 	private String name;
 	
 	@OneToOne
@@ -51,22 +47,20 @@ public class Product {
 	/**
 	 * For JPA Reflection
 	 */
-	protected Product() {
-		index = IndexGenerator.generateIndex();
-	}
+	protected Product() {}
 	
 	public Product(ProductPK key) {
 		checkNotNull(key, "Cannot create product with null key.");
-		index = IndexGenerator.generateIndex();
+		_key = key;
+	}
+	
+	public Product(String productID, String size, Color color) {
+		ProductPK key = new ProductPK(productID, size, color);
 		_key = key;
 	}
 	
 	public ProductPK getKey() {
 		return _key;
-	}
-	
-	public String getIndex() {
-		return index;
 	}
 	
 	public String getName() {
@@ -121,8 +115,7 @@ public class Product {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Product [_key=").append(_key).append(", index=")
-				.append(index).append(", name=").append(name)
+		builder.append("Product [_key=").append(_key).append(", name=").append(name)
 				.append(", store=").append(store).append(", productNumber=")
 				.append(productNumber).append(", price=").append(price)
 				.append(", count=").append(count).append(", createTime=")

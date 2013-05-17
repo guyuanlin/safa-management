@@ -3,6 +3,8 @@ package main;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.log4j.PropertyConfigurator;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,6 +27,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		PropertyConfigurator.configure("conf/log4j.properties");
 		launch(args);
 	}
 }

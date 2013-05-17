@@ -85,4 +85,13 @@ public class ProductPK implements Serializable  {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ProductPK [productID=").append(productID)
+				.append(", size=").append(size).append(", color=")
+				.append(color).append("]");
+		return builder.toString();
+	}
+
 }
