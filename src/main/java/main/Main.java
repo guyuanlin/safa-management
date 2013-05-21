@@ -28,6 +28,6 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		PropertyConfigurator.configure("conf/log4j.properties");
-		launch(args);
+		Application.launch(args);
 	}
 }

@@ -1,45 +1,56 @@
 package safa.controller;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ProductsTableViewController implements Initializable {
+import org.apache.log4j.Logger;
+
+public class SafaManagementController implements Initializable {
+	
+	@FXML private TabPane tabPane;
+	@FXML private Tab productsTab;
+	@FXML private Tab customsTab;
+	@FXML private Button addButton;
 	
 	@FXML private TableView<ObservableProduct> productsTableView;
-	
-	@FXML private TableColumn<ObservableProduct, String> colProductID;
-	@FXML private TableColumn<ObservableProduct, String> colProductName;
-	@FXML private TableColumn<ObservableProduct, String> colProductNumber;
+	@FXML private TableColumn<ObservableProduct, String> productIDCol;
+	@FXML private TableColumn<ObservableProduct, String> productNameCol;
+	@FXML private TableColumn<ObservableProduct, String> productNumberCol;
+	@FXML private TableColumn<ObservableProduct, String> productStoreCol;
+	@FXML private TableColumn<ObservableProduct, String> productColorCol;
 	@FXML private TableColumn<ObservableProduct, Integer> colPrice;
 	@FXML private TableColumn<ObservableProduct, Integer> colProductTotalCount;
 	@FXML private TableColumn<ObservableProduct, Integer> colTotalPrice;
 	
-	@FXML private Button btnAddProduct;
-	@FXML private Button btnDeleteProduct;
+	@FXML private Button saveProductButton;
+	@FXML private Button deleteProductButton;
 	
-	private final ObservableList<ObservableProduct> tableContent = FXCollections.observableArrayList();
-	
+	private Logger logger = Logger.getLogger(getClass());
+	private ObservableList<ObservableProduct> productList = FXCollections.observableArrayList();
+
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		checkNotNull(btnAddProduct, "btnAddProduct was not injected!");
-		
-		initButtons();
 		initTable();
+		logger.debug("Initial TabPaneController success.");
 	}
 	
-	private void initButtons() {
-		btnAddProduct.setDisable(true);
-		btnDeleteProduct.setDisable(true);
+	public void addButtonFired(ActionEvent event) {
+		if(productsTab.isSelected()) {
+			// TODO
+		} else if (customsTab.isSelected()) {
+			// TODO 
+		}
 	}
 	
 	private void initTable() {
@@ -50,6 +61,6 @@ public class ProductsTableViewController implements Initializable {
 		colProductTotalCount.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("count"));
 		colTotalPrice.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("totalPrice"));
 		
-		productsTableView.setItems(tableContent);
+		productsTableView.setItems(productList);
 	}
 }
