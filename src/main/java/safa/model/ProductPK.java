@@ -1,11 +1,8 @@
 package safa.model;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
-import javax.persistence.OneToOne;
 
 /**
  * ProductStock 的 Composite Primary Key
@@ -18,22 +15,17 @@ public class ProductPK implements Serializable  {
 	
 	private String productID;
 	private String size;
-	@OneToOne
-	private Color color;
+	private String color;
 	
 	/**
 	 * For JPA reflection
 	 */
 	ProductPK() {}
 	
-	public ProductPK(String productID, String size, Color color) {
-		checkNotNull(productID, "Product ID cannot be null.");
-		checkNotNull(size, "Size cannot be null.");
-		checkNotNull(color, "Color cannot be null.");
-		
-		this.productID = productID;
-		this.size = size;
-		this.color = color;
+	public ProductPK(String productID, String size, String color) {
+		this.productID = productID == null ? "" : productID;
+		this.size = size == null ? "" : size;
+		this.color = color == null ? "" : color;
 	}
 	
 	public String getProductID() {
@@ -44,7 +36,7 @@ public class ProductPK implements Serializable  {
 		return size;
 	}
 	
-	public Color getColor() {
+	public String getColor() {
 		return color;
 	}
 
@@ -58,6 +50,7 @@ public class ProductPK implements Serializable  {
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,11 +80,7 @@ public class ProductPK implements Serializable  {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ProductPK [productID=").append(productID)
-				.append(", size=").append(size).append(", color=")
-				.append(color).append("]");
-		return builder.toString();
+		return "ProductPK [productID=" + productID + ", size=" + size
+				+ ", color=" + color + "]";
 	}
-
 }

@@ -21,7 +21,6 @@ public class DBDAO {
 	
 	private EntityManagerFactory entityManagerFactory;
 	private Optional<ArrayList<Product>> defaultProductList;
-	private Optional<ArrayList<Color>> defaultColorList;
 	private Optional<ArrayList<Store>> defaultStoreList;
 	
 	private Logger logger;
@@ -29,7 +28,6 @@ public class DBDAO {
 	private DBDAO() {
 		entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_FILE);
 		defaultProductList = Optional.of(new ArrayList<Product>());
-		defaultColorList = Optional.of(new ArrayList<Color>());
 		defaultStoreList = Optional.of(new ArrayList<Store>());
 		
 		logger = Logger.getLogger(getClass());
@@ -115,57 +113,6 @@ public class DBDAO {
 		}
 	}
 	
-	public void addColor(Color color) {
-		logger.info(format("Add color: %s.", color));
-		EntityManager em = entityManagerFactory.createEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.persist(color);
-			em.getTransaction().commit();
-		} finally {
-			em.close();
-		}
-	}
-	
-	public boolean containsColor(String colorName) {
-		EntityManager em = entityManagerFactory.createEntityManager();
-		boolean result = false;
-		try {
-			em.getTransaction().begin();
-			result = !(em.find(Color.class, colorName) == null);
-			em.getTransaction().commit();
-			return result;
-		} finally {
-			em.close();
-		}
-	}
-	
-	public Color getColor(String colorName) {
-		EntityManager em = entityManagerFactory.createEntityManager();
-		Color color = null;
-		try {
-			em.getTransaction().begin();
-			color = em.find(Color.class, colorName);
-			em.getTransaction().commit();
-			return color;
-		} finally {
-			em.close();
-		}
-	}
-	
-	public List<Color> getAllColors() {
-		EntityManager em = entityManagerFactory.createEntityManager();
-		List<Color> colors = defaultColorList.get();
-		try {
-			em.getTransaction().begin();
-			colors = em.createQuery("from Color", Color.class).getResultList();
-			em.getTransaction().commit();
-			return colors;
-		} finally {
-			em.close();
-		}
-	}
-	
 	public void addStore(Store store) {
 		logger.info(format("Add store: %s.", store));
 		EntityManager em = entityManagerFactory.createEntityManager();
@@ -228,13 +175,11 @@ public class DBDAO {
 		PropertyConfigurator.configure("conf/log4j.properties");
 		DBDAO dao = DBDAO.getInstance();
 		
-		dao.addColor(new Color("紅色"));
-		dao.addColor(new Color("黑色"));
-		
 		dao.addStore(new Store("店家 A"));
 		dao.addStore(new Store("店家 B"));
 		
-		ProductPK key = new ProductPK("1234", "23.5", dao.getColor("紅色"));
+//		ProductPK key = new ProductPK("1234", "23.5", "紅色");
+		ProductPK key = new ProductPK("1234", null, null);
 		Product product = new Product(key);
 		dao.addProduct(product);
 		

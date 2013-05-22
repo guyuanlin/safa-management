@@ -29,9 +29,9 @@
                             <TableColumn minWidth="75.0" prefWidth="180.0" text="名稱" fx:id="productNameCol" />
                             <TableColumn prefWidth="120.0" text="貨號" fx:id="productNumberCol" />
                             <TableColumn prefWidth="100.0" text="店家" fx:id="productStoreCol" />
-                            <TableColumn prefWidth="75.0" text="顏色" />
-                            <TableColumn prefWidth="75.0" text="尺寸" />
-                            <TableColumn text="單價" fx:id="colPrice" />
+                            <TableColumn prefWidth="75.0" text="顏色" fx:id="productColorCol" />
+                            <TableColumn prefWidth="75.0" text="尺寸" fx:id="productSizeCol" />
+                            <TableColumn text="單價" fx:id="productPriceCol" />
                             <TableColumn prefWidth="60.0" text="數量" fx:id="colTotalCount" />
                             <TableColumn prefWidth="100.0" text="總金額" fx:id="colTotalPrice" />
                           </columns>

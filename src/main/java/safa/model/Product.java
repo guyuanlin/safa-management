@@ -54,7 +54,7 @@ public class Product {
 		_key = key;
 	}
 	
-	public Product(String productID, String size, Color color) {
+	public Product(String productID, String size, String color) {
 		ProductPK key = new ProductPK(productID, size, color);
 		_key = key;
 	}

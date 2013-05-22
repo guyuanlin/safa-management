@@ -8,7 +8,6 @@
             Persistence unit for the SAFA management system to storing the transaction data
         </description>
 
-		<class>safa.model.Color</class>
         <class>safa.model.Product</class>
         <class>safa.model.Store</class>
 

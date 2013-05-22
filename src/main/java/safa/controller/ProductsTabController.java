@@ -1,6 +1,5 @@
 package safa.controller;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

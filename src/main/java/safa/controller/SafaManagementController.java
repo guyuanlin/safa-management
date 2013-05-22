@@ -30,9 +30,10 @@ public class SafaManagementController implements Initializable {
 	@FXML private TableColumn<ObservableProduct, String> productNumberCol;
 	@FXML private TableColumn<ObservableProduct, String> productStoreCol;
 	@FXML private TableColumn<ObservableProduct, String> productColorCol;
-	@FXML private TableColumn<ObservableProduct, Integer> colPrice;
-	@FXML private TableColumn<ObservableProduct, Integer> colProductTotalCount;
-	@FXML private TableColumn<ObservableProduct, Integer> colTotalPrice;
+	@FXML private TableColumn<ObservableProduct, String> productSizeCol;
+	@FXML private TableColumn<ObservableProduct, Integer> productPriceCol;
+	@FXML private TableColumn<ObservableProduct, Integer> productCountCol;
+	@FXML private TableColumn<ObservableProduct, Integer> totalPrice;
 	
 	@FXML private Button saveProductButton;
 	@FXML private Button deleteProductButton;
@@ -54,12 +55,15 @@ public class SafaManagementController implements Initializable {
 	}
 	
 	private void initTable() {
-		colProductID.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("id"));
-		colProductName.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("name"));
-		colProductNumber.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("productNumber"));
-		colPrice.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("price"));
-		colProductTotalCount.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("count"));
-		colTotalPrice.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("totalPrice"));
+		productIDCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("id"));
+		productNameCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("name"));
+		productNumberCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("productNumber"));
+		productStoreCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("store"));
+		productColorCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("color"));
+		productSizeCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, String>("size"));
+		productPriceCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("price"));
+		productCountCol.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("count"));
+		totalPrice.setCellValueFactory(new PropertyValueFactory<ObservableProduct, Integer>("totalPrice"));
 		
 		productsTableView.setItems(productList);
 	}
