@@ -1,5 +1,6 @@
 package safa.model;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.sql.Timestamp;
@@ -59,6 +60,18 @@ public class Product {
 		_key = key;
 	}
 	
+	public String getID() {
+		return _key.getProductID();
+	}
+	
+	public String getColor() {
+		return _key.getColor();
+	}
+	
+	public String getSize() {
+		return _key.getSize();
+	}
+	
 	public ProductPK getKey() {
 		return _key;
 	}
@@ -93,12 +106,33 @@ public class Product {
 		this.price = price;
 	}
 	
+	public int getCount() {
+		return count;
+	}
+	
+	public void setCount(int count) {
+		checkArgument(count >= 0, "Count 不能小於 0");
+		this.count = count;
+	}
+	
+	public void increaseCount() {
+		count++;
+	}
+	
+	public void decreaseCount() {
+		count--;
+	}
+	
 	public Date getCreateTime() {
 		return createTime;
 	}
 	
 	public Date getUpdateTime() {
 		return updateTime;
+	}
+	
+	public int getTotalPrice() {
+		return price * count;
 	}
 	
 	@PrePersist

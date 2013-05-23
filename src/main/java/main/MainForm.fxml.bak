@@ -33,7 +33,9 @@
                             <TableColumn prefWidth="75.0" text="尺寸" fx:id="productSizeCol" />
                             <TableColumn text="單價" fx:id="productPriceCol" />
                             <TableColumn prefWidth="60.0" text="數量" fx:id="productCountCol" />
-                            <TableColumn prefWidth="100.0" text="總金額" fx:id="colTotalPrice" />
+                            <TableColumn prefWidth="100.0" text="總金額" fx:id="totalPrice" />
+                            <TableColumn prefWidth="100.0" text="更新時間" fx:id="updateTimeCol" />
+                            <TableColumn prefWidth="100.0" text="建立時間" />
                           </columns>
                         </TableView>
                       </children>

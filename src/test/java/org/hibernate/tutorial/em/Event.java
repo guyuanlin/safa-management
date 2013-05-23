@@ -59,10 +59,6 @@ public class Event {
 		return id;
     }
 
-    private void setId(Long id) {
-		this.id = id;
-    }
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "EVENT_DATE")
     public Date getDate() {
